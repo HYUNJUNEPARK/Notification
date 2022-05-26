@@ -1,4 +1,4 @@
-package com.june.notification.notification
+package com.june.notification.notification.actionnotification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,30 +11,31 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.june.notification.SubActivity
-import com.june.notification.notification.Constants.Companion.TOUCH_PENDING_INTENT_ACTION
-import com.june.notification.notification.Constants.Companion.TOUCH_PENDING_INTENT_REQUEST_CODE
-import com.june.notification.notification.Constants.Companion.TOUCH_CHANNEL_DESCRIPTION
-import com.june.notification.notification.Constants.Companion.TOUCH_CHANNEL_ID
-import com.june.notification.notification.Constants.Companion.TOUCH_CHANNEL_NAME
-import com.june.notification.notification.Constants.Companion.TOUCH_NOTIFICATION_CONTENT
-import com.june.notification.notification.Constants.Companion.TOUCH_NOTIFICATION_ID
-import com.june.notification.notification.Constants.Companion.TOUCH_NOTIFICATION_TITLE
+import com.june.notification.notification.Constants
+import com.june.notification.notification.Constants.Companion.ACTION_CHANNEL_DESCRIPTION
+import com.june.notification.notification.Constants.Companion.ACTION_CHANNEL_ID
+import com.june.notification.notification.Constants.Companion.ACTION_CHANNEL_NAME
+import com.june.notification.notification.Constants.Companion.ACTION_NOTIFICATION_BUTTON_TITLE
+import com.june.notification.notification.Constants.Companion.ACTION_NOTIFICATION_CONTENT
+import com.june.notification.notification.Constants.Companion.ACTION_NOTIFICATION_ID
+import com.june.notification.notification.Constants.Companion.ACTION_NOTIFICATION_TITLE
+import com.june.notification.notification.Constants.Companion.ACTION_PENDING_INTENT_ACTION
+import com.june.notification.notification.Constants.Companion.ACTION_PENDING_INTENT_REQUEST_CODE
 
-class TouchEventNotification(private val context: Context) {
+class ActionNotification (private val context: Context) {
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     lateinit var builder: NotificationCompat.Builder
 
     fun notifyNotification() {
         notification()
         notificationManager.notify(
-            TOUCH_NOTIFICATION_ID,
+            ACTION_NOTIFICATION_ID,
             builder.build()
         )
     }
 
     fun cancelNotification() {
-        notificationManager.cancel(TOUCH_NOTIFICATION_ID)
+        notificationManager.cancel(Constants.ACTION_NOTIFICATION_ID)
     }
 
 
@@ -42,13 +43,13 @@ class TouchEventNotification(private val context: Context) {
         //O 버전 이상 채널 생성
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                TOUCH_CHANNEL_ID,
-                TOUCH_CHANNEL_NAME,
+                ACTION_CHANNEL_ID,
+                ACTION_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             )
 
             //설정 화면에서 채널을 설명
-            channel.description = TOUCH_CHANNEL_DESCRIPTION
+            channel.description = ACTION_CHANNEL_DESCRIPTION
             //홈 화면 앱에 배지 아이콘 표시
             channel.setShowBadge(true)
             //진동 설정 및 패턴
@@ -67,7 +68,7 @@ class TouchEventNotification(private val context: Context) {
             //채널을 NotificationManager 에 등록
             notificationManager.createNotificationChannel(channel)
             //채널을 이용해 빌더 생성
-            builder = NotificationCompat.Builder(context, TOUCH_CHANNEL_ID)
+            builder = NotificationCompat.Builder(context, Constants.ACTION_CHANNEL_ID)
             return builder
         }
         //O 버전 미만
@@ -78,11 +79,11 @@ class TouchEventNotification(private val context: Context) {
     }
 
     private fun notification() {
-        val intent = Intent(context, SubActivity::class.java)
-        intent.action = TOUCH_PENDING_INTENT_ACTION
-        val pendingIntent = PendingIntent.getActivity(
+        val intent = Intent(context, ActionNotificationReceiver::class.java)
+        intent.action = ACTION_PENDING_INTENT_ACTION
+        val pendingIntent = PendingIntent.getBroadcast(
             context,
-            TOUCH_PENDING_INTENT_REQUEST_CODE,
+            ACTION_PENDING_INTENT_REQUEST_CODE,
             intent,
             //Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
             PendingIntent.FLAG_IMMUTABLE
@@ -91,11 +92,17 @@ class TouchEventNotification(private val context: Context) {
         builder = notificationBuilder().apply {
             setSmallIcon(android.R.drawable.ic_notification_overlay)
             setWhen(System.currentTimeMillis())
-            setContentTitle(TOUCH_NOTIFICATION_TITLE)
-            setContentText(TOUCH_NOTIFICATION_CONTENT)
+            setContentTitle(ACTION_NOTIFICATION_TITLE)
+            setContentText(ACTION_NOTIFICATION_CONTENT)
 
-            //touch event
-            setContentIntent(pendingIntent)
+            //action notification
+            addAction(
+                NotificationCompat.Action.Builder(
+                    android.R.drawable.stat_notify_more,
+                    ACTION_NOTIFICATION_BUTTON_TITLE,
+                    pendingIntent
+                ).build()
+            )
         }
     }
 }

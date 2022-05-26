@@ -30,8 +30,29 @@ class Notification(private val context: Context) {
         )
     }
 
+    fun notifyUnCancelableNotification() {
+        unCancelableNotification()
+        notificationManager.notify(
+            NOTIFICATION_ID,
+            builder.build()
+        )
+    }
+
     fun cancelNotification() {
         notificationManager.cancel(NOTIFICATION_ID)
+    }
+
+    private fun unCancelableNotification()  {
+        builder = notificationBuilder().apply {
+            setSmallIcon(android.R.drawable.ic_notification_clear_all)
+            setWhen(System.currentTimeMillis())
+            setContentTitle(NOTIFICATION_TITLE)
+            setContentText(NOTIFICATION_CONTENT)
+
+            //User can not cancel notification
+            setAutoCancel(false) //block touch cancel
+            setOngoing(true) //block swipe cancel
+        }
     }
 
     private fun notificationBuilder(): NotificationCompat.Builder {
@@ -81,26 +102,4 @@ class Notification(private val context: Context) {
             setContentText(NOTIFICATION_CONTENT)
         }
     }
-
-//TODO 사용자가 지울 수 없는 알림이 필요할 때 활성화
-//
-//    fun notifyUnCancelableNotification() {
-//        unCancelableNotification()
-//        notificationManager.notify(
-//            NOTIFICATION_ID,
-//            builder.build()
-//        )
-//    }
-//    private fun unCancelableNotification()  {
-//        builder = notificationBuilder().apply {
-//            setSmallIcon(android.R.drawable.ic_notification_clear_all)
-//            setWhen(System.currentTimeMillis())
-//            setContentTitle(NOTIFICATION_TITLE)
-//            setContentText(NOTIFICATION_CONTENT)
-//
-//            //User can not cancel notification
-//            setAutoCancel(false) //block touch cancel
-//            setOngoing(true) //block swipe cancel
-//        }
-//    }
 }

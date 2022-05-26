@@ -3,9 +3,9 @@ package com.june.notification
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.june.notification.notification.Notification
 import com.june.notification.notification.TouchEventNotification
-import com.june.notification.notification.twochannelsample.FirstChannelNotification
-import com.june.notification.notification.twochannelsample.SecondChannelNotification
+import com.june.notification.notification.actionnotification.ActionNotification
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,34 +13,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    //1ch
-    fun notify_1CH_NotificationButtonClicked(v: View) {
-        FirstChannelNotification(this).notifyNotification()
+    //standard
+    fun notifyNotificationButtonClicked(v: View) {
+        Notification(this).notifyNotification()
     }
 
-    fun notifyUnCancelable_1CH_NotificationButtonClicked(v: View) {
-        FirstChannelNotification(this).notifyUnCancelableNotification()
+    fun notifyUnCancelableNotificationButtonClicked(v: View) {
+        Notification(this).notifyUnCancelableNotification()
     }
 
-    fun cancel_1CH_NotificationButtonClicked(v: View) {
-        FirstChannelNotification(this).cancelNotification()
+    fun cancelNotificationButtonClicked(v: View) {
+        Notification(this).cancelNotification()
     }
 
-    //2ch
-    fun notify_2CH_NotificationButtonClicked(v: View) {
-        SecondChannelNotification(this).notifyNotification()
-    }
-
-    fun notifyUnCancelable_2CH_NotificationButtonClicked(v: View) {
-        SecondChannelNotification(this).notifyUnCancelableNotification()
-    }
-
-    fun cancel_2CH_NotificationButtonClicked(v: View) {
-        SecondChannelNotification(this).cancelNotification()
-    }
-
-    //touch event
+    //touch event notification
     fun touchEventNotificationButtonClicked(v: View) {
         TouchEventNotification(this).notifyNotification()
     }
+
+    //action notification
+    fun actionNotificationButtonClicked(v: View) {
+        ActionNotification(this).notifyNotification()
+    }
+
+
 }

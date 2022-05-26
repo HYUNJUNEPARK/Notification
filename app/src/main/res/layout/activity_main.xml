@@ -8,7 +8,7 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
-    <!-- 1 Channel   -->
+<!-- notification  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:onClick="notify_1CH_NotificationButtonClicked"
+            android:onClick="notifyNotificationButtonClicked"
             android:text="[1] notification"
             android:textSize="11sp" />
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="@color/black"
-            android:onClick="notifyUnCancelable_1CH_NotificationButtonClicked"
+            android:onClick="notifyUnCancelableNotificationButtonClicked"
             android:text="[1] notification"
             android:textSize="11sp" />
     </LinearLayout>
@@ -44,7 +44,7 @@
             android:id="@+id/cancel_1CH_NotificationButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="cancel_1CH_NotificationButtonClicked"
+            android:onClick="cancelNotificationButtonClicked"
             android:text="cancel [1] notification" />
     </LinearLayout>
 
@@ -55,54 +55,7 @@
         android:layout_marginBottom="20dp"
         android:background="@color/black" />
 
-    <!-- 2 Channel   -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/notify_2CH_NotificationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:onClick="notify_2CH_NotificationButtonClicked"
-            android:text="[2] notification"
-            android:textSize="11sp" />
-
-        <Button
-            android:id="@+id/notifyUnCancelable_2CH_NotificationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/black"
-            android:onClick="notifyUnCancelable_2CH_NotificationButtonClicked"
-            android:text="[2] notification"
-            android:textSize="11sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/cancel_2CH_NotificationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="cancel_2CH_NotificationButtonClicked"
-            android:text="cancel [2] notification" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/black" />
-
-    <!-- touch event notification -->
+<!-- touch event notification -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -114,6 +67,28 @@
             android:layout_margin="5dp"
             android:onClick="touchEventNotificationButtonClicked"
             android:text="touch event : go to subactivity"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/black" />
+
+<!-- action notification -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/actionNotificationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="actionNotificationButtonClicked"
+            android:text="action event : broadcast receiver"
             android:textSize="11sp" />
     </LinearLayout>
 

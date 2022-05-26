@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Notification">
+        <receiver
+            android:name=".notification.actionnotification.ActionNotificationReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
             android:name=".SubActivity"
             android:exported="true" />
