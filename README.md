@@ -4,7 +4,7 @@
 -앱의 알림을 채널로 구분할 수 있으며 하나의 앱에서 원하는 채널의 알림만 받을 수 있게됨
 ex)광고 알림은 받지 않지만 채팅방 생성 알림은 받게 설정 가능
 
-알림 채널 생성자
+1. 알림 채널
 `NotificationChannel(id:String!, name: CharSequence!, importance: Int)`
 
 importance
@@ -21,6 +21,13 @@ importance
 `fun setLightColor(argb: Int) : Unit` : 불빛이 표시된다면 불빛 색상
 `fun enableVibration(vibration: Boolean) : Unit` : 진동을 울릴지 여부
 `fun setVibrationPatter(vibrationPatter: LongArray!) : Unit` : 진동이 울린다면 진동 패턴
+
+2. 알림 객체
+
+
+
+
+
 
 
 
