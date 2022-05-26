@@ -3,8 +3,9 @@ package com.june.notification
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.june.notification.notification.FirstChannelNotification
-import com.june.notification.notification.SecondChannelNotification
+import com.june.notification.notification.TouchEventNotification
+import com.june.notification.notification.twochannelsample.FirstChannelNotification
+import com.june.notification.notification.twochannelsample.SecondChannelNotification
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    //1ch
     fun notify_1CH_NotificationButtonClicked(v: View) {
         FirstChannelNotification(this).notifyNotification()
     }
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         FirstChannelNotification(this).cancelNotification()
     }
 
+    //2ch
     fun notify_2CH_NotificationButtonClicked(v: View) {
         SecondChannelNotification(this).notifyNotification()
     }
@@ -34,5 +37,10 @@ class MainActivity : AppCompatActivity() {
 
     fun cancel_2CH_NotificationButtonClicked(v: View) {
         SecondChannelNotification(this).cancelNotification()
+    }
+
+    //touch event
+    fun touchEventNotificationButtonClicked(v: View) {
+        TouchEventNotification(this).notifyNotification()
     }
 }

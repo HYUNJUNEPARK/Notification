@@ -10,49 +10,41 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.june.notification.Constants.Companion.SECOND_CHANNEL_DESCRIPTION
-import com.june.notification.Constants.Companion.SECOND_CHANNEL_ID
-import com.june.notification.Constants.Companion.SECOND_CHANNEL_NAME
-import com.june.notification.Constants.Companion.SECOND_NOTIFICATION_CONTENT
-import com.june.notification.Constants.Companion.SECOND_NOTIFICATION_ID
-import com.june.notification.Constants.Companion.SECOND_NOTIFICATION_TITLE
+import com.june.notification.notification.Constants.Companion.CHANNEL_DESCRIPTION
+import com.june.notification.notification.Constants.Companion.CHANNEL_ID
+import com.june.notification.notification.Constants.Companion.CHANNEL_NAME
+import com.june.notification.notification.Constants.Companion.NOTIFICATION_CONTENT
+import com.june.notification.notification.Constants.Companion.NOTIFICATION_ID
+import com.june.notification.notification.Constants.Companion.NOTIFICATION_TITLE
 
-class SecondChannelNotification(private val context: Context) {
+class Notification(private val context: Context) {
     private val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     lateinit var builder: NotificationCompat.Builder
 
+    //TODO 액티비티에서 해당 함수만 호출하면 알림 기능 구현
     fun notifyNotification() {
         notification()
         notificationManager.notify(
-            SECOND_NOTIFICATION_ID,
-            builder.build()
-        )
-    }
-
-    fun notifyUnCancelableNotification() {
-        unCancelableNotification()
-        notificationManager.notify(
-            SECOND_NOTIFICATION_ID,
+            NOTIFICATION_ID,
             builder.build()
         )
     }
 
     fun cancelNotification() {
-        notificationManager.cancel(SECOND_NOTIFICATION_ID)
+        notificationManager.cancel(NOTIFICATION_ID)
     }
-
 
     private fun notificationBuilder(): NotificationCompat.Builder {
         //O 버전 이상 채널 생성
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                SECOND_CHANNEL_ID,
-                SECOND_CHANNEL_NAME,
+                CHANNEL_ID,
+                CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             )
 
             //설정 화면에서 채널을 설명
-            channel.description = SECOND_CHANNEL_DESCRIPTION
+            channel.description = CHANNEL_DESCRIPTION
             //홈 화면 앱에 배지 아이콘 표시
             channel.setShowBadge(true)
             //진동 설정 및 패턴
@@ -71,7 +63,7 @@ class SecondChannelNotification(private val context: Context) {
             //채널을 NotificationManager 에 등록
             notificationManager.createNotificationChannel(channel)
             //채널을 이용해 빌더 생성
-            builder = NotificationCompat.Builder(context, SECOND_CHANNEL_ID)
+            builder = NotificationCompat.Builder(context, CHANNEL_ID)
             return builder
         }
         //O 버전 미만
@@ -85,21 +77,30 @@ class SecondChannelNotification(private val context: Context) {
         builder = notificationBuilder().apply {
             setSmallIcon(android.R.drawable.ic_notification_overlay)
             setWhen(System.currentTimeMillis())
-            setContentTitle(SECOND_NOTIFICATION_TITLE)
-            setContentText(SECOND_NOTIFICATION_CONTENT)
+            setContentTitle(NOTIFICATION_TITLE)
+            setContentText(NOTIFICATION_CONTENT)
         }
     }
 
-    private fun unCancelableNotification()  {
-        builder = notificationBuilder().apply {
-            setSmallIcon(android.R.drawable.ic_notification_clear_all)
-            setWhen(System.currentTimeMillis())
-            setContentTitle(SECOND_NOTIFICATION_TITLE)
-            setContentText(SECOND_NOTIFICATION_CONTENT)
-
-            //User can not cancel notification
-            setAutoCancel(false) //block touch cancel
-            setOngoing(true) //block swipe cancel
-        }
-    }
+//TODO 사용자가 지울 수 없는 알림이 필요할 때 활성화
+//
+//    fun notifyUnCancelableNotification() {
+//        unCancelableNotification()
+//        notificationManager.notify(
+//            NOTIFICATION_ID,
+//            builder.build()
+//        )
+//    }
+//    private fun unCancelableNotification()  {
+//        builder = notificationBuilder().apply {
+//            setSmallIcon(android.R.drawable.ic_notification_clear_all)
+//            setWhen(System.currentTimeMillis())
+//            setContentTitle(NOTIFICATION_TITLE)
+//            setContentText(NOTIFICATION_CONTENT)
+//
+//            //User can not cancel notification
+//            setAutoCancel(false) //block touch cancel
+//            setOngoing(true) //block swipe cancel
+//        }
+//    }
 }
