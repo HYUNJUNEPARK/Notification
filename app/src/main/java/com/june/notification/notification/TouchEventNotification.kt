@@ -11,7 +11,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.june.notification.SubActivity
+import com.june.notification.activity.ActionNotificationActivity
 import com.june.notification.notification.Constants.Companion.TOUCH_PENDING_INTENT_ACTION
 import com.june.notification.notification.Constants.Companion.TOUCH_PENDING_INTENT_REQUEST_CODE
 import com.june.notification.notification.Constants.Companion.TOUCH_CHANNEL_DESCRIPTION
@@ -78,7 +78,7 @@ class TouchEventNotification(private val context: Context) {
     }
 
     private fun notification() {
-        val intent = Intent(context, SubActivity::class.java)
+        val intent = Intent(context, ActionNotificationActivity::class.java)
         intent.action = TOUCH_PENDING_INTENT_ACTION
         val pendingIntent = PendingIntent.getActivity(
             context,

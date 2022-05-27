@@ -32,5 +32,15 @@ importance
 
 
 
+RemoteInput 은 API 20 에서 추가됨
+이전 버전에서는 호환성 생각할 것(android.app.RemoteInput -> androidx.core.app.RemoteInput 사용)
+
+
+
+
+
+
+
+
 
 

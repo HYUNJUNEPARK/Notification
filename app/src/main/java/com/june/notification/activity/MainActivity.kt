@@ -1,11 +1,13 @@
-package com.june.notification
+package com.june.notification.activity
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.june.notification.R
 import com.june.notification.notification.Notification
 import com.june.notification.notification.TouchEventNotification
-import com.june.notification.notification.actionnotification.ActionNotification
+import com.june.notification.notification.action.ActionNotification
+import com.june.notification.notification.remoteinput.RemoteInputNotification
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,5 +38,9 @@ class MainActivity : AppCompatActivity() {
         ActionNotification(this).notifyNotification()
     }
 
+    //remote input notification
+    fun remoteInputNotificationButtonClicked(v: View) {
+        RemoteInputNotification(this).notifyNotification()
+    }
 
 }

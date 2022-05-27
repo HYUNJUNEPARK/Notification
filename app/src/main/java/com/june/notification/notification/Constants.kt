@@ -31,5 +31,19 @@ class Constants {
         const val ACTION_PENDING_INTENT_ACTION = "action event notification"
         const val ACTION_NOTIFICATION_BUTTON_TITLE = "Action"
 
+        //Remote input notification
+        const val REMOTE_INPUT_CHANNEL_ID = "remote-input-channel"
+        const val REMOTE_INPUT_CHANNEL_NAME = "My remote input channel name"
+        const val REMOTE_INPUT_CHANNEL_DESCRIPTION = "My remote input channel description"
+        const val REMOTE_INPUT_NOTIFICATION_TITLE = "remote input notification title"
+        const val REMOTE_INPUT_NOTIFICATION_CONTENT = "remote input notification content"
+        const val REMOTE_INPUT_NOTIFICATION_ID = 5
+        const val REMOTE_INPUT_PENDING_INTENT_REQUEST_CODE = 6
+        const val REMOTE_INPUT_PENDING_INTENT_ACTION = "remote input event notification"
+        const val REMOTE_INPUT_KEY_TEXT_REPLY = "key_text_reply"
+        const val REMOTE_INPUT_BUTTON_TITLE = "답장"
+
+        const val REMOTE_INPUT_NOTIFICATION_REPLY_TITLE = "remote input arrived successfully"
+        const val REMOTE_INPUT_NOTIFICATION_REPLY_CONTENT = "user input arrived to receiver "
     }
 }

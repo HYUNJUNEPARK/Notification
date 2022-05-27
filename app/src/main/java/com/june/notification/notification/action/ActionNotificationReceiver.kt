@@ -1,4 +1,4 @@
-package com.june.notification.notification.actionnotification
+package com.june.notification.notification.action
 
 import android.content.BroadcastReceiver
 import android.content.Context

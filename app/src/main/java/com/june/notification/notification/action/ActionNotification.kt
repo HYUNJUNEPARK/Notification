@@ -1,4 +1,4 @@
-package com.june.notification.notification.actionnotification
+package com.june.notification.notification.action
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
