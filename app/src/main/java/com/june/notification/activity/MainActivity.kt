@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.june.notification.R
 import com.june.notification.notification.Notification
-import com.june.notification.notification.TouchEventNotification
+import com.june.notification.notification.touchevent.TouchEventNotification
 import com.june.notification.notification.action.ActionNotification
 import com.june.notification.notification.remoteinput.RemoteInputNotification
 
@@ -42,5 +42,4 @@ class MainActivity : AppCompatActivity() {
     fun remoteInputNotificationButtonClicked(v: View) {
         RemoteInputNotification(this).notifyNotification()
     }
-
 }

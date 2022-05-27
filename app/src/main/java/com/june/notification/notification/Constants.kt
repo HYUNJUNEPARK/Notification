@@ -42,8 +42,10 @@ class Constants {
         const val REMOTE_INPUT_PENDING_INTENT_ACTION = "remote input event notification"
         const val REMOTE_INPUT_KEY_TEXT_REPLY = "key_text_reply"
         const val REMOTE_INPUT_BUTTON_TITLE = "답장"
-
         const val REMOTE_INPUT_NOTIFICATION_REPLY_TITLE = "remote input arrived successfully"
         const val REMOTE_INPUT_NOTIFICATION_REPLY_CONTENT = "user input arrived to receiver "
+        //preference for remote input
+        const val REMOTE_INPUT_NOTIFICATION_PREF_NAME = "pref"
+        const val REMOTE_USER_INPUT = "userInput"
     }
 }

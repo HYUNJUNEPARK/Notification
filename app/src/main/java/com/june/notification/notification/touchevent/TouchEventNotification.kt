@@ -1,4 +1,4 @@
-package com.june.notification.notification
+package com.june.notification.notification.touchevent
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -36,7 +36,6 @@ class TouchEventNotification(private val context: Context) {
     fun cancelNotification() {
         notificationManager.cancel(TOUCH_NOTIFICATION_ID)
     }
-
 
     private fun notificationBuilder(): NotificationCompat.Builder {
         //O 버전 이상 채널 생성

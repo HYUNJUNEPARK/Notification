@@ -13,6 +13,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import com.june.notification.R
+import com.june.notification.activity.RemoteInputActivity
 import com.june.notification.notification.Constants
 import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_CHANNEL_DESCRIPTION
 import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_CHANNEL_ID
@@ -26,7 +27,6 @@ import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_PENDI
 import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_BUTTON_TITLE
 import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_NOTIFICATION_REPLY_CONTENT
 import com.june.notification.notification.Constants.Companion.REMOTE_INPUT_NOTIFICATION_REPLY_TITLE
-import com.june.notification.notification.action.ActionNotificationReceiver
 
 class RemoteInputNotification (private val context: Context) {
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -120,17 +120,30 @@ class RemoteInputNotification (private val context: Context) {
                     R.drawable.ic_baseline_send_24,
                     REMOTE_INPUT_BUTTON_TITLE,
                     pendingIntent
-                ).addRemoteInput(remoteInput).build()
+                ).addRemoteInput(remoteInput)
+                 .build()
             )
         }
     }
 
     private fun replyNotification() {
+        val intent = Intent(context, RemoteInputActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            REMOTE_INPUT_PENDING_INTENT_REQUEST_CODE,
+            intent,
+            //Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+            PendingIntent.FLAG_IMMUTABLE
+        )
+
         builder = notificationBuilder().apply {
             setSmallIcon(android.R.drawable.ic_notification_overlay)
             setWhen(System.currentTimeMillis())
             setContentTitle(REMOTE_INPUT_NOTIFICATION_REPLY_TITLE)
             setContentText(REMOTE_INPUT_NOTIFICATION_REPLY_CONTENT)
+
+            //touch event
+            setContentIntent(pendingIntent)
         }
     }
 }
