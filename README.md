@@ -8,7 +8,9 @@
 -앱의 알림을 채널로 구분할 수 있으며 하나의 앱에서 원하는 채널의 알림만 받을 수 있게됨</br>
 ex)광고 알림은 받지 않지만 채팅방 생성 알림은 받게 설정 가능</br>
 
-1. 알림 채널</br>
+<br></br>
+**1 알림 채널**</br>
+
 `NotificationChannel(id:String!, name: CharSequence!, importance: Int)`</br>
 
 importance</br>
@@ -26,7 +28,8 @@ importance</br>
 `fun enableVibration(vibration: Boolean) : Unit` : 진동을 울릴지 여부</br>
 `fun setVibrationPatter(vibrationPatter: LongArray!) : Unit` : 진동이 울린다면 진동 패턴</br>
 
-2. 알림 객체</br>
+<br></br>
+**2 알림 객체**</br>
 
 RemoteInput 은 API 20 에서 추가됨</br>
 이전 버전에서는 호환성 생각할 것(android.app.RemoteInput -> androidx.core.app.RemoteInput 사용)</br>
